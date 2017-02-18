@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,31 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    var imagePicker: UIImagePickerController!
+    
+    @IBOutlet var imageView: UIImageView!
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    }
+    
+    @IBAction func takePhoto(_ sender: UIButton) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+//    @IBAction func MakeCall(_ sender: Any) {
+//        
+//        let url:URL = URL(string: "tel://123456789")!
+//        UIApplication.shared.open(url)
+//    }
 }
 
