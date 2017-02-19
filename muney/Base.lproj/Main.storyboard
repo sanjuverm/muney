@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Open Camera"/>
                                 <connections>
-                                    <action selector="openCameraButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4KK-vC-UDa"/>
+                                    <action selector="showCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T7f-DJ-MPO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEH-eu-cpA">
@@ -37,12 +37,15 @@
                                 <rect key="frame" x="0.0" y="517" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Open Photo Library"/>
+                                <connections>
+                                    <action selector="showPhotoLib:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eLK-ud-qq0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="openCamera" destination="f1a-he-umt" id="uLI-gQ-5Nk"/>
+                        <outlet property="imagePicked" destination="SEH-eu-cpA" id="2JI-Jv-gRt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

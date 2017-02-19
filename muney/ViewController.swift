@@ -13,8 +13,12 @@ class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate
 {
+    
+    let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -25,17 +29,44 @@ class ViewController: UIViewController,
     
     @IBOutlet weak var imagePicked: UIImageView!
 
-    
-    @IBAction func openCameraButton(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+    @IBAction func showCamera(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             //var
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
-            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+       
+        } else {
+            // Show error
+            
+        }
+        
+    }
+    
+    @IBAction func showPhotoLib(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePicked.image = image
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+//    @IBAction func openCameraButton(_ sender: Any) {
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+//            //var
+//            let imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+//            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+//            imagePicker.allowsEditing = false
+//            self.present(imagePicker, animated: true, completion: nil)
+//        }
+//    }
     
     
     
